@@ -6,7 +6,6 @@ hash_table = ChainingHashTable()
 distance_data = []
 address_data = []
 
-
 # parse the packages csv file
 def import_packages(filename):
     with open(filename) as csv_file:
