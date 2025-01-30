@@ -27,11 +27,7 @@ class Truck:
             # If the package should be delivered by the given time, print it
             # package_time = package.delivered_time
             if package.delivered_time:
-                if package.delivered_time > time > self.depart_time:
-                    print(package.delivered_time)
-                    still_on_truck.append(package.package_id)
-                elif package.delivered_time > time:
-                    print("Truck has not departed yet.")
+                if package.delivered_time > time:
                     print(package.delivered_time)
                     still_on_truck.append(package.package_id)
         
