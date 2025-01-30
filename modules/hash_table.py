@@ -78,4 +78,4 @@ class ChainingHashTable:
                 new_table[new_bucket].append([key, item])
         
         self.table = new_table
-        print(f"Resized table to new capacity: {new_capacity}")
+        # print(f"Resized table to new capacity: {new_capacity}")

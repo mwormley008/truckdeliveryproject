@@ -40,7 +40,6 @@ def import_distances(filename):
         for i in range(len(distance_data)):
             for j in range(0, len(distance_data)):
                 distance_data[i][j+1] = distance_data[j][i+2]
-        print(distance_data)
 
 
 # parse the address csv file
@@ -52,3 +51,9 @@ def import_addresses(filename):
         for row in addresses_csv:
             # append only the address (element 1, index 0) to the list
             address_data.append(row[0])
+
+#imports all CSV files
+def import_csv_files():
+    import_packages("csv_files/packages.csv")
+    import_distances("csv_files/distances.csv")
+    import_addresses("csv_files/addresses.csv")

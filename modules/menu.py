@@ -2,7 +2,6 @@ from modules.delivery import *
 
 
 # function to convert a user input of time in string format into a datetime object
-# O(1)
 def convert_time(user_time):
     (h, m, s) = user_time.split(":")
     h = int(h)
@@ -11,33 +10,32 @@ def convert_time(user_time):
     return datetime.timedelta(hours=h, minutes=m, seconds=s)
 
 
-def start_ui():
-    # printing and calculating then rounding the total distance traveled for all trucks
-    total_distance = truck_two.miles_traveled + truck_two.miles_traveled + truck_three.miles_traveled
+def user_interface():
+    # displays the total distance traveled by the trucks
+    total_distance = 0
+    for i in trucks:
+        total_distance += i.miles_traveled
     rounded_total_distance = round(total_distance, 1)
-    print("Total distance traveled for all trucks: {} miles".format(rounded_total_distance))
-    print("\nPackage IDs on " + truck_one.truck_id + ":")
-    print(truck_one.delivered)
-    print("\nPackage IDs on " + truck_two.truck_id + ":")
-    print(truck_two.delivered)
-    print("\nPackage IDs on " + truck_three.truck_id + ":")
-    print(truck_three.delivered)
-    print("\ntype an option to:")
-    is_quit = True
-    # O(1)
-    while is_quit:
-        print("[1] get SINGLE package STATUS details at a specific time")
-        print("[2] get ALL package FULL details at a specific time")
-        print("[3] Show total miles driven by trucks")
-        print("[0] quit program")
+    print(f"Total distance traveled for all trucks: {rounded_total_distance} miles")
+    for truck in trucks:
+        print(f"\nTruck {truck.truck_id} Packages:")
+        print(truck.delivered)
+    print("\n Select option")
+    ui_running = True
+    # runs until the user quits the interface
+    while ui_running:
+        print("1 - Get single package details")
+        print("2 - Get details from all packages")
+        print("3 - Show total miles driven by trucks")
+        print("0 - Exit program")
         try:
             option = int(input("[?]: "))
             if option == 0:
                 try:
-                    print("stay sweet parakeet")
-                    is_quit = False
+                    print("Ending program")
+                    ui_running = False
                 except:
-                    print("Invalid input, try again")
+                    print("Invalid input.")
             elif option == 1:
                 try:
                     # take the user input for a time in the correct format, else send error message
@@ -51,7 +49,7 @@ def start_ui():
                     # print details to the screen
                     print(package.package_lookup(converted_time))
                 except:
-                    print("Invalid input, try again")
+                    print("Invalid input.")
             elif option == 2:
                 try:
                     user_time = input("enter time with format, HH:MM:SS: ")
@@ -61,13 +59,13 @@ def start_ui():
                         package = hash_table.search(element)
                         print(package.package_lookup(converted_time))
                 except:
-                    print("Invalid input, try again")
+                    print("Invalid input.")
             elif option == 3:
                 try:
                     print("Total distance traveled for all trucks: {} miles".format(rounded_total_distance))
                 except:
-                    print("Invalid input, try again")
+                    print("Invalid input.")
             else:
-                print("invalid input, try again")
+                print("invalid input.")
         except:
-            print("invalid input, try again")
+            print("invalid input.")

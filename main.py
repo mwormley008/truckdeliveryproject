@@ -11,14 +11,11 @@ class Main:
     print("WGUPS Menu\n")
 
     # import information from given CSV files
-    import_packages("csv_files/packages.csv")
-    import_distances("csv_files/distances.csv")
-    import_addresses("csv_files/addresses.csv")
+    import_csv_files()
 
-    # calling delivery functions for each truck from delivery.py module
-    delivery(truck_one)
-    delivery(truck_two)
-    delivery(truck_three)
+    # calls the delivery function for each truck in the list of the trucks
+    for i in trucks:
+        nearest_neighbor_delivery(i)
 
-    # start of program's user interface from menu.py module
-    start_ui()
+    # CLI User interface is initiated
+    user_interface()

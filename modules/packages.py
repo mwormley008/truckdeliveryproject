@@ -1,4 +1,3 @@
-# class to create package objects
 class Package:
     def __init__(self, package_id, del_address, del_city, del_state, del_zip, del_deadline, weight, special_notes):
         self.package_id = package_id
@@ -13,27 +12,22 @@ class Package:
         self.delivered_time = None
         self.status = "Status: at hub"
 
-    # F. Develop a look-up function that takes the following components as input and returns the
-    # corresponding data elements:
-    # package ID number, delivery address, delivery deadline, delivery city, delivery zip code,
-    # package weight, delivery status (i.e., "at the hub", "en route", or "delivered"), including
-    # delivery time
-    # note: Your function should output all data elements for the package ID number.
-    # O(1)
-    def package_lookup(self, user_time):
-        if user_time >= self.delivered_time:
+    """ B. Develop a look-up function that takes the package ID as input and returns the attributes of the package"""
+    def package_lookup(self, input_time):
+        # Delivery status
+        if input_time >= self.delivered_time:
             time = self.delivered_time
-            status = "Status: delivered\n Delivered Time: " + str(time)
-        elif self.delivered_time > user_time > self.departure_time:
-            status = "Status: en route"
+            status = f"Status: Delivered (at {str(time)})" 
+        elif self.delivered_time > input_time > self.departure_time:
+            status = "Status: En route"
         else:
-            status = "Status: at hub"
+            status = "Status: At hub"
 
-        return f"""Package ID: {self.package_id} \n 
-                Address: {self.del_address} \n 
-                City: {self.del_city} \n 
-                State: {self.del_state} \n 
-                Zip Code: {self.del_zip}\n 
-                Deadline: {self.del_deadline} \n 
-                Weight(kg): {self.weight} \n 
+        return f"""Package ID: {self.package_id}
+                Address: {self.del_address}
+                City: {self.del_city}
+                State: {self.del_state}
+                Zip Code: {self.del_zip}
+                Deadline: {self.del_deadline}
+                Weight(kg): {self.weight}
                 Status: {status} \n Special Notes:{self.special_notes}"""
