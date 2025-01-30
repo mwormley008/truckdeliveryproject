@@ -1,14 +1,14 @@
 # class to create package objects
 class Package:
-    def __init__(self, pid, address, city, state, zip_code, deadline, weight, notes):
-        self.pid = pid
-        self.address = address
-        self.city = city
-        self.state = state
-        self.zip_code = zip_code
-        self.deadline = deadline
+    def __init__(self, package_id, del_address, del_city, del_state, del_zip, del_deadline, weight, special_notes):
+        self.package_id = package_id
+        self.del_address = del_address
+        self.del_city = del_city
+        self.del_state = del_state
+        self.zip_code = del_zip
+        self.deadline = del_deadline
         self.weight = weight
-        self.notes = notes
+        self.notes = special_notes
         self.departure_time = None
         self.delivered_time = None
         self.status = "at hub"
@@ -20,7 +20,7 @@ class Package:
     # delivery time
     # note: Your function should output all data elements for the package ID number.
     # O(1)
-    def get_details(self, user_time):
+    def package_lookup(self, user_time):
         if user_time >= self.delivered_time:
             time = self.delivered_time
             status = "Satus: delivered\t Delivered Time: " + str(time)
@@ -31,5 +31,5 @@ class Package:
 
         return "Package ID: %s \t Address: %s \t City: %s \t State: %s \t Zip Code: %s" \
                "\t Deadline: %s \t Weight(kg): %s \t %s \t %s" % (
-                self.pid, self.address, self.city, self.state, self.zip_code,
+                self.package_id, self.del_address, self.del_city, self.del_state, self.zip_code,
                 self.deadline, self.weight, status, self.notes)
