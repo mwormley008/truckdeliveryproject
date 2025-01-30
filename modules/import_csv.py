@@ -14,16 +14,16 @@ def import_packages(filename):
         # O(n)
         for row in reader:
             # storing values into variables to pass into insert function and package object
-            pid = int(row[0])
-            address = row[1]
-            city = row[2]
-            state = row[3]
-            zip_code = int(row[4])
-            deadline = row[5]
-            weight = int(row[6])
+            package_id = int(row[0])
+            del_address = row[1]
+            del_city = row[2]
+            del_state = row[3]
+            del_zip_code = int(row[4])
+            del_deadline = row[5]
+            del_weight = int(row[6])
             notes = row[7]
             # insert package id as an integer for the key and a package object as the value
-            hash_table.insert(pid, Package(pid, address, city, state, zip_code, deadline, weight, notes))
+            hash_table.insert(package_id, Package(package_id, del_address, del_city, del_state, del_zip_code, del_deadline, del_weight, notes))
 
 
 # parse the distance csv file
