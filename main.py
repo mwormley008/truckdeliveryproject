@@ -9,6 +9,7 @@ class Main:
 
     # begin calling import functions from the import-csv.py module
     # import package objects into hash_table
+    # ok so the packages look like they're importing now but now I'm having a hard time with the delivery truck_one
     import_packages("csv_files/packages.csv")
 
     # import addresses into a one-dimensional array

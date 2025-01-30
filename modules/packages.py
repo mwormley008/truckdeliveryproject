@@ -29,10 +29,11 @@ class Package:
         else:
             status = "Status: at hub"
 
-        return f"Package ID: {self.package_id} \n 
+        return f"""Package ID: {self.package_id} \n 
                 Address: {self.del_address} \n 
                 City: {self.del_city} \n 
                 State: {self.del_state} \n 
-                Zip Code: {self.del_zip}" f"\n Deadline: {self.del_deadline} \n Weight(kg): {self.weight} \n Status: {status} \n Special Notes:{self.special_notes}" % (
-                self.package_id, self.del_address, self.del_city, self.del_state, self.del_zip,
-                self.del_deadline, self.weight, status, self.special_notes)
+                Zip Code: {self.del_zip}\n 
+                Deadline: {self.del_deadline} \n 
+                Weight(kg): {self.weight} \n 
+                Status: {status} \n Special Notes:{self.special_notes}"""

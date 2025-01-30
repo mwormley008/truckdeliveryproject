@@ -31,7 +31,7 @@ def min_distance(truck):
     # loop through elements in truck's array of packages not delivered
     for element in truck.not_delivered:
         # find the distance between the truck's current address and every other element in the array
-        dist = distance_between(truck.current_address, hash_table.search(element).address)
+        dist = distance_between(truck.current_address, hash_table.search(element).del_address)
         # add that distance in miles to the distances array
         distances.append(float(dist))
     # find the minimum value in the array of distances
@@ -54,7 +54,7 @@ def delivery(truck):
     while len(truck.not_delivered) > 0:
         # find the shortest distance from current_address of truck to any package
         index_of_nearest, shortest_distance = min_distance(truck)
-        truck.current_address = hash_table.search(truck.not_delivered[index_of_nearest]).address
+        truck.current_address = hash_table.search(truck.not_delivered[index_of_nearest]).del_address
         # add mileage to package to truck's total milage
         truck.miles_traveled += shortest_distance
         # update current time as each package is delivered
@@ -66,7 +66,7 @@ def delivery(truck):
         truck.delivered.append(truck.not_delivered[index_of_nearest])
         truck.not_delivered.remove(truck.not_delivered[index_of_nearest])
     # add mileage from last package on truck back to the hub
-    dist_back_to_hub = distance_between(hash_table.search(truck.delivered[len(truck.delivered) - 1]).address,
+    dist_back_to_hub = distance_between(hash_table.search(truck.delivered[len(truck.delivered) - 1]).del_address,
                                         truck.end_address)
     truck.miles_traveled += dist_back_to_hub
     truck.miles_traveled = round(truck.miles_traveled, 1)

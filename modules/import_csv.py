@@ -45,9 +45,10 @@ def import_distances(filename):
 # parse the address csv file
 def import_addresses(filename):
     with open(filename) as csv_file:
-        reader = csv.reader(csv_file, delimiter=",")
+        addresses_csv = csv.reader(csv_file, delimiter=",")
         # loop through each row in the csv file
         # O(n)
-        for row in reader:
+        for row in addresses_csv:
             # append only the address (element 1, index 0) to the list
             address_data.append(row[0])
+            # print(address_data)
