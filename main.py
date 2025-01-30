@@ -1,23 +1,19 @@
 # Name: Michael Wormley
 # Student id:012418005
 
+# this is a program designed to practice using Data Structures and Algorithm
+# The task is to find an efficient routing mechanism to deliver different packages
+
 from modules.menu import *
 
 
 class Main:
-    print("Western Governors University Parcel Service Program\n")
+    print("WGUPS Menu\n")
 
-    # begin calling import functions from the import-csv.py module
-    # import package objects into hash_table
-    # ok so the packages look like they're importing now but now I'm having a hard time with the delivery truck_one
+    # import information from given CSV files
     import_packages("csv_files/packages.csv")
-
-    # import addresses into a one-dimensional array
-    import_addresses("csv_files/addresses.csv")
-
-    # import distances to all addresses into a two-dimensional array
-    # note: distance_data[2][6] is the same as distance_data[6][2]
     import_distances("csv_files/distances.csv")
+    import_addresses("csv_files/addresses.csv")
 
     # calling delivery functions for each truck from delivery.py module
     delivery(truck_one)

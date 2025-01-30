@@ -28,6 +28,7 @@ def start_ui():
     while is_quit:
         print("[1] get SINGLE package STATUS details at a specific time")
         print("[2] get ALL package FULL details at a specific time")
+        print("[3] Show total miles driven by trucks")
         print("[0] quit program")
         try:
             option = int(input("[?]: "))
@@ -48,7 +49,7 @@ def start_ui():
                     # search hash table for the package object
                     package = hash_table.search(lookup_id)
                     # print details to the screen
-                    print(package.get_details(converted_time))
+                    print(package.package_lookup(converted_time))
                 except:
                     print("Invalid input, try again")
             elif option == 2:
@@ -58,7 +59,12 @@ def start_ui():
                     # loop through all packages in hash table
                     for element in range(1, 41):
                         package = hash_table.search(element)
-                        print(package.get_details(converted_time))
+                        print(package.package_lookup(converted_time))
+                except:
+                    print("Invalid input, try again")
+            elif option == 3:
+                try:
+                    print("Total distance traveled for all trucks: {} miles".format(rounded_total_distance))
                 except:
                     print("Invalid input, try again")
             else:

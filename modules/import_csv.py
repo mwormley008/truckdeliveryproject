@@ -38,8 +38,9 @@ def import_distances(filename):
         # this creates a complete distance table
         # O(n^2)
         for i in range(len(distance_data)):
-            for j in range(len(distance_data)):
-                distance_data[i][j] = distance_data[j][i]
+            for j in range(0, len(distance_data)):
+                distance_data[i][j+1] = distance_data[j][i+2]
+        print(distance_data)
 
 
 # parse the address csv file
