@@ -29,7 +29,7 @@ def user_interface():
         print("3 - Show total miles driven by trucks")
         print("0 - Exit program")
         try:
-            option = int(input("[?]: "))
+            option = int(input("Selection: "))
             if option == 0:
                 try:
                     print("Ending program")
@@ -38,23 +38,20 @@ def user_interface():
                     print("Invalid input.")
             elif option == 1:
                 try:
-                    # take the user input for a time in the correct format, else send error message
-                    user_time = input("enter time with format, HH:MM:SS: ")
-                    # convert the user input from string to a datetime object
-                    converted_time = convert_time(user_time)
-                    # take the user input for package ID
+                    # Requests time from user, then converts it to a datetime object
+                    input_time = input("Enter time in format HH:MM:SS: ")
+                    converted_time = convert_time(input_time)
+                    # Requests package ID from user to search in the hash table and print details
                     lookup_id = int(input("enter package ID: "))
-                    # search hash table for the package object
                     package = hash_table.search(lookup_id)
-                    # print details to the screen
                     print(package.package_lookup(converted_time))
                 except:
                     print("Invalid input.")
             elif option == 2:
                 try:
-                    user_time = input("enter time with format, HH:MM:SS: ")
-                    converted_time = convert_time(user_time)
-                    # loop through all packages in hash table
+                    input_time = input("Enter time in format HH:MM:SS: ")
+                    converted_time = convert_time(input_time)
+                    # Prints each package in hash table
                     for element in range(1, 41):
                         package = hash_table.search(element)
                         print(package.package_lookup(converted_time))
@@ -62,7 +59,7 @@ def user_interface():
                     print("Invalid input.")
             elif option == 3:
                 try:
-                    print("Total distance traveled for all trucks: {} miles".format(rounded_total_distance))
+                    print(f"Total distance traveled for all trucks: {rounded_total_distance} miles")
                 except:
                     print("Invalid input.")
             else:

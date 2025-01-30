@@ -28,45 +28,45 @@ def distance_between(address1, address2):
 
 def min_distance(truck):
     distances = []
-    # loop through elements in truck's array of packages not delivered
+    # loop through undelivered packages in the truck
     for element in truck.undelivered:
-        # find the distance between the truck's current address and every other element in the array
+        # Create a list of possible distances between current location and all other possible locations
         dist = distance_between(truck.current_address, hash_table.search(element).del_address)
-        # add that distance in miles to the distances array
         distances.append(float(dist))
-    # find the minimum value in the array of distances
+    # Minimum of that list is the shortest distance and therefore the Nearest Neighbor
     minimum_distance = min(distances)
-    # find the index of the next closest address
     index_of_minimum = distances.index(minimum_distance)
     return index_of_minimum, minimum_distance
 
 
 
 def nearest_neighbor_delivery(truck):
-    # set packages in truck as en route
+    # Packages in truck but not delivered are "en route"
     for element in truck.undelivered:
-        hash_table.search(element).status = "en route"
+        hash_table.search(element).status = "Status: En route"
         hash_table.search(element).departure_time = truck.depart_time
         truck.current_time = truck.depart_time
-    # loop through every package on the truck in the undelivered array
+    # Find the shortest distance using min_distance(), add 
     while len(truck.undelivered) > 0:
-        # find the shortest distance from current_address of truck to any package
+        # Find the nearest neighbor to travel to next
         index_of_nearest, shortest_distance = min_distance(truck)
         truck.current_address = hash_table.search(truck.undelivered[index_of_nearest]).del_address
-        # add mileage to package to truck's total milage
+
+        # Increment mileage
         truck.miles_traveled += shortest_distance
-        # update current time as each package is delivered
+        # Update time for each delivery
         truck.current_time += datetime.timedelta(hours=shortest_distance / 18)
-        # Change status of the delivered package to "delivered"
-        hash_table.search(truck.undelivered[index_of_nearest]).status = "delivered"
+        
+        # Change status of the delivered package to "Delivered"
+        hash_table.search(truck.undelivered[index_of_nearest]).status = "Status: Delivered"
         # Change delivered time of the delivered package to the time it was delivered
         hash_table.search(truck.undelivered[index_of_nearest]).delivered_time = truck.current_time
-        # Removed delivered package from the list of undelivered packages, then add it to the list of delivered packages
+        # Remove delivered package from the list of undelivered packages, then add it to the list of delivered packages
         truck.delivered.append(truck.undelivered[index_of_nearest])
         truck.undelivered.remove(truck.undelivered[index_of_nearest])
-    # add mileage from last package on truck back to the hub
-    dist_back_to_hub = distance_between(hash_table.search(truck.delivered[len(truck.delivered) - 1]).del_address,
-                                        truck.start_address)
-    truck.miles_traveled += dist_back_to_hub
+
+    # Add mileage to return to the place the truck started at from the last delivery location.
+    return_trip_mileage = distance_between(hash_table.search(truck.delivered[len(truck.delivered) - 1]).del_address,truck.start_address)
+    truck.miles_traveled += return_trip_mileage
     truck.miles_traveled = round(truck.miles_traveled, 1)
-    truck.current_time += datetime.timedelta(hours=dist_back_to_hub / 18)
+    truck.current_time += datetime.timedelta(hours=return_trip_mileage / 18)

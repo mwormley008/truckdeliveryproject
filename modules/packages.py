@@ -10,9 +10,9 @@ class Package:
         self.special_notes = special_notes
         self.departure_time = None
         self.delivered_time = None
-        self.status = "Status: at hub"
+        self.status = "Status: At hub"
 
-    """ B. Develop a look-up function that takes the package ID as input and returns the attributes of the package"""
+    #B. Develop a look-up function that takes the package ID as input and returns the attributes of the package
     def package_lookup(self, input_time):
         # Delivery status
         if input_time >= self.delivered_time:
@@ -30,4 +30,4 @@ class Package:
                 Zip Code: {self.del_zip}
                 Deadline: {self.del_deadline}
                 Weight(kg): {self.weight}
-                Status: {status} \n Special Notes:{self.special_notes}"""
+                {status} \n Special Notes:{self.special_notes}"""

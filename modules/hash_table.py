@@ -1,17 +1,5 @@
-# D. Identify a self-adjusting data structure, such as a hash table, that can be used with the algorithm
-# identified in part A to store the package data. 1. Explain how your data structure accounts for the relationship
-# between the data points you are storing.
-# Note: Use only appropriate built-in data structures, except dictionaries. You must design, write, implement,
-# and debug all code that you turn in for this assessment. Code downloaded from the Internet or acquired from
-# another student or any other source may not be submitted and will result in automatic failure of this assessment.
-
-# E. Develop a hash table, without using any additional libraries or classes, that has an insertion function that
-# takes the following components as input and inserts the components into the hash table:
-# packageIDnumber, deliveryaddress, deliverydeadline, deliverycity, deliveryzipcode, packageweight,
-# deliverystatus(e.g., delivered, enroute)
-
-# HashTable class using chaining.
 class ChainingHashTable:
+    # HashTable class using chaining.
     # Constructor with optional initial capacity parameter.
     # Assigns all buckets with an empty list.
     def __init__(self, initial_capacity=10, load_factor_threshold=0.75):
@@ -19,7 +7,6 @@ class ChainingHashTable:
         self.table = []
         self.size = 0
         self.load_factor_threshold = load_factor_threshold
-        # O(n)
         for i in range(initial_capacity):
             self.table.append([])
 
@@ -32,7 +19,6 @@ class ChainingHashTable:
         bucket_list = self.table[bucket]
 
         # update key if it is already in the bucket.
-        # O(n)
         for kv in bucket_list:
             if kv[0] == key:
                 kv[1] = item
@@ -52,7 +38,6 @@ class ChainingHashTable:
         bucket_list = self.table[bucket]
 
         # search for the key in the bucket list
-        # O(n)
         for key_value in bucket_list:
             if key_value[0] == key:
                 # if found return the key's value that is in the bucket list.
