@@ -27,6 +27,7 @@ def user_interface():
         print("1 - Get single package details")
         print("2 - Get details from all packages")
         print("3 - Show total miles driven by trucks")
+        print("4 - Show packages on each truck at a specific time.")
         print("0 - Exit program")
         try:
             option = int(input("Selection: "))
@@ -60,6 +61,17 @@ def user_interface():
             elif option == 3:
                 try:
                     print(f"Total distance traveled for all trucks: {rounded_total_distance} miles")
+                except:
+                    print("Invalid input.")
+            elif option == 4:
+                try:
+                    input_time = input("Enter time in format HH:MM:SS: ")
+                    converted_time = convert_time(input_time)
+                    
+                    for truck in trucks:
+                        print(f"\nTruck {truck.truck_id} Packages at {input_time}:")
+                        print(truck.show_packages_at_time(input_time))
+                        print("debug")
                 except:
                     print("Invalid input.")
             else:
