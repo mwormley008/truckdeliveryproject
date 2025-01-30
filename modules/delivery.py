@@ -15,6 +15,8 @@ truck_three = Truck([9, 2, 4, 5, 7, 8, 10, 11, 12, 17, 21, 22, 23, 24, 26, 33],
 # function to return the index of an address from the address table
 # O(1)
 def address_lookup(address):
+
+    print(address_data.index(address))
     return address_data.index(address)
 
 
