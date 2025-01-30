@@ -28,7 +28,6 @@ class Truck:
             # package_time = package.delivered_time
             if package.delivered_time:
                 if package.delivered_time > time:
-                    print(package.delivered_time)
                     still_on_truck.append(package.package_id)
         
         return still_on_truck

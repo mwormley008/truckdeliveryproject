@@ -69,9 +69,9 @@ def user_interface():
                     converted_time = convert_time(input_time)
                     
                     for truck in trucks:
-                        print(f"\nTruck {truck.truck_id} Packages at {input_time}:")
+                        print(f"\nTruck {truck.truck_id} Undelivered Packages at {input_time}:")
                         print(truck.show_packages_at_time(input_time))
-                        print("debug")
+                        
                 except:
                     print("Invalid input.")
             else:
