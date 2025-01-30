@@ -51,4 +51,3 @@ def import_addresses(filename):
         for row in addresses_csv:
             # append only the address (element 1, index 0) to the list
             address_data.append(row[0])
-            print(address_data)
